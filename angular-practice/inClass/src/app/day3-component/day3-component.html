@@ -1,0 +1,24 @@
+<h1>Signal {{count()}}</h1>
+<div>Reactive Primitive. Zoneless</div>
+<button (click)="onClick()">Reset</button>
+
+<h1>Data communication</h1>
+<ol>
+    <li>Parent-child relationship
+        <ul>
+            <li>input</li>
+            <li>output</li>
+        </ul>
+    </li>
+    <li>No relationship</li>
+</ol>
+<app-child-component 
+[fromParent]="userInput()" (toParent)="handleEvent($event)">
+
+</app-child-component>
+
+<div>
+    <label>Provide username to </label>
+    <input type="text" [(ngModel)]="username"
+    (keyup.enter)="addNewUser()"/>
+</div>

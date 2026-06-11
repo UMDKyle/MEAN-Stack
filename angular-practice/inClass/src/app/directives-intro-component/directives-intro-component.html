@@ -1,0 +1,21 @@
+<h2>directives intro</h2>
+<ol>
+    <li>Component</li>
+    <li>Structural Directives</li>
+        <ul>ngif</ul>
+        <ul>ngfor</ul>
+        <ul>ngswitch</ul>
+    <li>attribute Directives</li>
+        <ul [ngStyle] = "{backgroundColor:bgColor}">ngStyle</ul>
+        <ul [ngClass] = "bgColor === 'blue' ? 'blue' : 'red'">ngClass</ul>
+
+
+</ol>
+@for(todo of todos; track todo.id) {
+    <p >{{todo.id}} - {{todo.title | titlecase| uppercase}}
+        @if(todo.completed){
+            <span>👌</span>
+        }
+    </p> 
+}
+<h2>Pipes</h2>
