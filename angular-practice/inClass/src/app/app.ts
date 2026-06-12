@@ -7,9 +7,10 @@ import { RouterOutlet } from '@angular/router';
 // import { Day4Component } from './day4-component/day4-component';
 import { Day6Component } from './day6-component/day6-component';
 import { ProductsComponent } from './products-component/products-component';
+import { JobBoard } from './job-board/job-board';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Day6Component, ProductsComponent],
+  imports: [RouterOutlet, Day6Component, ProductsComponent,JobBoard],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

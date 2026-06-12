@@ -1,0 +1,26 @@
+<div class="job-board">
+  <h1>Hacker News Jobs Board</h1>
+
+  <div class="job-list">
+    @for (job of jobs(); track job.id) {
+      <div class="job-card">
+        <h3>
+          @if (job.url) {
+            <a [href]="job.url" target="_blank">{{ job.title }}</a>
+          } @else {
+            {{ job.title }}
+          }
+        </h3>
+        <p class="job-meta">By {{ job.by }} · {{ job.time * 1000 | date: 'M/d/yyyy, h:mm:ss a' }}</p>
+      </div>
+    }
+  </div>
+
+  <div class="load-more">
+    @if (isLoading()) {
+      <p>Loading...</p>
+    } @else if (hasMore()) {
+      <button (click)="loadMore()">Load more jobs</button>
+    }
+  </div>
+</div>
