@@ -1,0 +1,25 @@
+<input
+  type="text"
+  placeholder="Enter a Character name"
+  [formControl]="characterName"
+/>
+<button type="submit" (click)="onSubmit()">Submit</button>
+
+@if (films().length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>Film Title</th>
+        <th>Release Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (film of films(); track film.title) {
+        <tr>
+          <td>{{ film.title }}</td>
+          <td>{{ film.release_date | date:'yyyy' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

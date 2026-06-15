@@ -8,9 +8,10 @@ import { RouterOutlet } from '@angular/router';
 import { Day6Component } from './day6-component/day6-component';
 import { ProductsComponent } from './products-component/products-component';
 import { JobBoard } from './job-board/job-board';
+import { StarwarSearch } from './starwar-search/starwar-search';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Day6Component, ProductsComponent,JobBoard],
+  imports: [RouterOutlet, Day6Component, ProductsComponent,JobBoard, StarwarSearch],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
