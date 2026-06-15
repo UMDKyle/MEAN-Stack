@@ -1,0 +1,35 @@
+<main>
+  <h1>Mortgage Calculator</h1>
+    <form [formGroup]="mortgageForm" (ngSubmit)="calculate()">
+      <div>
+        <label>Loan Amount ($)</label>
+        <input type="number" formControlName="loanAmount"/>
+        @if (mortgageForm.get('loanAmount')?.invalid && mortgageForm.get('loanAmount')?.touched){
+          <span>Please enter a valid loan amount (must be greater than 0)</span>
+        }
+      </div>
+      <div>
+        <label>Annual Interest Rate (%)</label>
+        <input type="number" formControlName="interestRate" />
+        @if (mortgageForm.get('interestRate')?.invalid && mortgageForm.get('interestRate')?.touched) {
+          <span>Please enter a valid interest rate (0.01 - 100).</span>
+        }
+      </div>
+      <div>
+        <label>Loan Term (years)</label>
+        <input type="number" formControlName="loanTerm" />
+        @if (mortgageForm.get('loanTerm')?.invalid && mortgageForm.get('loanTerm')?.touched) {
+          <span>Please enter a valid loan term (must be at least 1 year).</span>
+        }
+      </div>
+      <button type="submit" [disabled]="mortgageForm.invalid">Calculate</button>
+    </form>
+    @if (monthlyPayment() !== null) {
+      <div>
+        <h2>Results</h2>
+        <p>Monthly Payment: ${{ monthlyPayment() }}</p>
+        <p>Total Payment: ${{ totalPayment() }}</p>
+        <p>Total Interest Paid: ${{ totalInterest() }}</p>
+      </div>
+    }
+</main>
