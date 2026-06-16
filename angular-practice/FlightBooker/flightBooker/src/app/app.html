@@ -1,0 +1,35 @@
+<main>
+  <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <select formControlName="flightType">
+        <option value="one-way">One-way flight</option>
+        <option value="return">Return flight</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Departure Date</label>
+      <input formControlName="departureDate" type="date">
+      @if (flightForm.get('departureDate')?.hasError('required') && flightForm.get('departureDate')?.touched) {
+        <p>Please enter a departure date.</p>
+      }
+      @if (flightForm.get('departureDate')?.hasError('pastDate') && flightForm.get('departureDate')?.touched) {
+        <p>Departure date cannot be in the past.</p>
+      }
+    </div>
+
+    @if (flightForm.get('flightType')?.value === 'return') {
+      <div>
+        <label>Return Date</label>
+        <input formControlName="returnDate" type="date">
+        @if (flightForm.hasError('returnBeforeDeparture') && flightForm.get('returnDate')?.touched) {
+          <p>Return date cannot be before departure date.</p>
+        }
+      </div>
+    }
+
+    <button type="submit">Book</button>
+
+  </form>
+</main>
