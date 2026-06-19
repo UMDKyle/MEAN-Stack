@@ -1,0 +1,63 @@
+<main>
+  <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>User Name</label>
+      <input formControlName="username" type="text">
+      @if(inputForm.get('username')?.hasError('required') && inputForm.get('username')?.touched){
+        <p class="alert">This field is required</p>
+      }
+      @if(inputForm.get('username')?.hasError('minlength') && inputForm.get('username')?.touched){
+        <p class="alert">Username is required and must be at least 3 characters long.</p>
+      }
+    </div>
+    <div>
+      <label>Password</label>
+      <input formControlName="password" type="password">
+      @if(inputForm.get('password')?.hasError('required') && inputForm.get('password')?.touched){
+        <p class="alert">This field is required</p>
+      }
+      @if(inputForm.get('password')?.hasError('minlength') && inputForm.get('password')?.touched){
+        <p class="alert">Password is required and must be at least 6 characters long.</p>
+      }
+    </div>
+    <div>
+      <label>Confirm Password</label>
+      <input formControlName="confirmPassword" type="password">
+      @if(inputForm.get('confirmPassword')?.hasError('required') && inputForm.get('confirmPassword')?.touched){
+        <p class="alert">This field is required</p>
+      }
+      @if(inputForm.hasError('passwordMismatch') && inputForm.get('confirmPassword')?.touched){
+        <p class="alert">Passwords do not match</p>
+      }
+    </div>
+    <div>
+      <label>Preferred Contact Method</label>
+      <select formControlName = "contactMethod">
+        <option value = "email">Email</option>
+        <option value = "phone">Phone Number</option>
+      </select>
+    </div>
+    @if (inputForm.get('contactMethod')?.value === 'email'){
+      <div>
+        <label>Email</label>
+        <input formControlName="email" type="email">
+        @if(inputForm.get('email')?.hasError('required') && inputForm.get('email')?.touched){
+          <p class="alert">Please provide at least one contact method.</p>
+        }
+        @if(inputForm.get('email')?.hasError('email') && inputForm.get('email')?.touched){
+          <p class="alert">Please enter a valid email address.</p>
+        }
+      </div>
+    }
+    @if (inputForm.get('contactMethod')?.value === 'phone'){
+      <div>
+        <label>Phone</label>
+        <input formControlName="phone" type="text">
+        @if(inputForm.get('phone')?.hasError('required') && inputForm.get('phone')?.touched){
+          <p class="alert">Please provide at least one contact method.</p>
+        }
+      </div>
+    }
+    <button type = "submit" [disabled]="inputForm.invalid">Submit</button>
+  </form>
+</main>
