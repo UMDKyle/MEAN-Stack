@@ -1,0 +1,35 @@
+<main>
+  <form [formGroup]="searchForm" (ngSubmit)="search(searchForm.value.username!)">
+    <div>
+      <label>Username:</label>
+      <input type="text" formControlName="username"/>
+      @if (searchForm.get('username')?.touched && searchForm.get('username')?.hasError('required')) {
+        <span>Username is required</span>
+      }
+      @if (searchForm.get('username')?.touched && searchForm.get('username')?.hasError('pattern')) {
+        <span>Only letters, numbers and hyphens allowed</span>
+      }
+    
+      <button type = "submit" [disabled] = "searchForm.invalid">Search</button>
+    </div>
+  </form>
+  <hr>
+  <label>Filter</label>
+  <input type="text" (input)="onFilter($event)"/>
+  <hr>
+
+  <table>
+    <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>Profile URL Link</th>
+    </tr>
+    @for (u of filteredUsers(); track u.id){
+      <tr>
+        <td>{{u.id}}</td>
+        <td>{{u.login}}</td>
+        <td><a [href]="u.html_url">{{ u.html_url }}</a></td>
+      </tr>
+    }
+  </table>
+</main>
