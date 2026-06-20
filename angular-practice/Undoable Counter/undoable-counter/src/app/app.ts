@@ -1,13 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { CounterComponent } from './counter-component/counter-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CounterComponent],
+  imports: [CounterComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('undoable-counter');
-}
+export class App {}
