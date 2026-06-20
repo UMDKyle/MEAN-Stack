@@ -1,0 +1,19 @@
+<h1>{{ count$ | async }}</h1>
+<div>
+    <button (click)="change(1)">+1</button>
+    <button (click)="change(10)">+10</button>
+    <button (click)="change(100)">+100</button>
+    <button (click)="change(-1)">-1</button>
+    <button (click)="change(-10)">-10</button>
+    <button (click)="change(-100)">-100</button>
+</div>
+<div>
+    <button (click)="undo()" [disabled]="!(canUndo$ | async)">Undo</button>
+    <button (click)="redo()" [disabled]="!(canRedo$ | async)">Redo</button>
+</div>
+
+<ul>
+    @for (entry of (history$ |async)!; track entry){
+        <li>{{entry.action}} ({{entry.before}} -> {{entry.after}})</li>
+    }
+</ul>
